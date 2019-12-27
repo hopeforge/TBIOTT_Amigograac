@@ -1,0 +1,33 @@
+<nav id="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+  <div class="sidebar-header">
+    <div alt="GRAACC" id="img-sidebar">
+     </div>
+  </div>
+
+  <ul class="list-unstyled components">
+    <li>
+      <a [routerLink]="['/home']" [routerLinkActive]="'[router-link-active]'" href="#">
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/perfil']" [routerLinkActive]="'[router-link-active]'" href="#">
+        <i class="fa fa-user-circle"></i>
+        Perfil
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/cadastro']" [routerLinkActive]="'[router-link-active]'" href="#">
+        <i class="fa fa-briefcase"></i>
+        Cadastro
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/login']" [routerLinkActive]="'[router-link-active]'" href="#">
+        <i class="fa fa-briefcase"></i>
+        Login
+      </a>
+    </li>
+  </ul>
+</nav>

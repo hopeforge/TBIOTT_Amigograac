@@ -1,0 +1,1 @@
+export const GRAACC_API = 'http://52.53.150.60:8080/graac'

@@ -1,0 +1,26 @@
+ng-select{
+    margin: 2px;
+}
+
+.ng-select .ng-clear-wrapper{
+    display: none;
+}
+
+.ng-select.custom {
+    position: relative;
+    z-index: auto;
+    overflow-y: none;
+}
+
+.select-custom {
+    height: 36px;
+    width: 100%;
+    overflow-y: auto;
+    box-shadow: 0 1px 0 rgba(0,0,0,.06);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-xl {
+    max-width: 80%;
+  }

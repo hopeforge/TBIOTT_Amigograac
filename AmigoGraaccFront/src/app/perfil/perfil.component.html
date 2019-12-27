@@ -1,0 +1,140 @@
+<div class="container">
+    <div class="row my-2" style="margin-right: 0; margin-left: 0">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Medalhas</a>
+                </li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <h2 class="mb-3">{{usuario.nome}}</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Amigo GRAACC</h6>
+                            <p>
+                                Desde {{usuario.cadastro | date : 'yyyy'}}
+                            </p>
+                            <p>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Últimas medalhas</h6>
+                            <img *ngFor="let badge of badges" width="25" src="../../assets/images/{{badge.nomeArquivo}}">
+                            <!--a href="#" class="badge badge-dark badge-pill">A</a>
+                            <a href="#" class="badge badge-dark badge-pill">B</a>
+                            <a href="#" class="badge badge-dark badge-pill">C</a>
+                            <a href="#" class="badge badge-dark badge-pill">D</a>
+                            <a href="#" class="badge badge-dark badge-pill">E</a>
+                            <a href="#" class="badge badge-dark badge-pill">F</a>
+                            <a href="#" class="badge badge-dark badge-pill">G</a>
+                            <a href="#" class="badge badge-dark badge-pill">H</a-->
+                            <hr>
+                            <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Compartilhamentos</span>
+                        </div>
+                        <div class="col-md-12">
+                            <h5 class="mt-2"><span class="fa fa-clock-o ion-clock"></span> Atividades Recentes</h5>
+                            <table class="table table-sm table-hover table-striped">
+                                <tbody>                                    
+                                    <tr *ngFor="let badge of badges">
+                                        <td>
+                                            <strong>Show!</strong> Você ganhou a medalha <strong>{{badge.nome}}</strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+                <div class="tab-pane" id="messages">
+                    <div class="alert alert-info alert-dismissable">
+                        <strong>Parabéns!</strong> Essas são suas medalhas.
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12" >
+                            <img *ngFor="let badge of badges" width="100" src="../../assets/images/{{badge.nomeArquivo}}">
+                            <!--img width="100" src="../../assets/images/limpinho-prata.png">
+                            <img width="100" src="../../assets/images/limpinho-ouro.png">
+                            <img width="100" src="../../assets/images/limpinho-platina.png"-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 order-lg-1 text-center">
+            <img src="../../assets/images/{{imgPath}}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <h6 class="mt-2">Já fez sua doação hoje?</h6>
+            <button type="button" class="btn btn-primary" (click)="getCategorias(mymodal);">Fazer Doação</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Doar para GRAACC</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-row">
+                    <div class="form-group col-sm-4">
+                        <label for="">Categorias</label>
+                        <select name="categoria.id" ngDefaultControl class="form-control" [(ngModel)]="categoria.id" >
+                            <option value="0">Selecione</option>
+                            <option [value]="categoriaLista.id" *ngFor="let categoriaLista of categorias">{{categoriaLista.nome}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="">Valor da Doação</label>
+                        <input currencyMask [options]="{prefix: 'R$ ', thousands:'.', decimal: ','}" name="doacao.valorDoacao" class="form-control" ngDefaultControl [(ngModel)]="doacao.valorDoacao">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');open(confirmacaoDoacao, true)">Ok</button>
+    </div>
+</ng-template>
+
+<ng-template #confirmacaoDoacao let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Obrigado por sua Doação!</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img width="200" src="../../assets/images/animated-fireworks.gif">   
+                </div>
+                <div class="col-sm-8">
+                    <p>Compartilhe sua boa ação e ajude o GRAACC a encontrar outras pessoas de bom coração como você,
+                        possibilitando o tratamento de ainda mais crianças!</p>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-8 text-center">
+                    <share-buttons
+                        [include]="['facebook','twitter','linkedin','reddit']"
+                        [show]="4"
+                        [showText]="true"
+                        [url]="'https://amigograacc.netlify.com'"
+                        [title]="'Amigo GRAACC'"
+                        [description]="'Eu sou Amigo GRAACC! Ajude também!'"
+                        [tags]="'#amigograacc'"
+                        [autoSetMeta]="true"
+                        (opened)="reciverFeedback('opened', $event)"
+                        (closed)="reciverFeedback('closed', $event)">
+                    </share-buttons>
+                </div>
+            </div>
+        </div>
+    </ng-template>

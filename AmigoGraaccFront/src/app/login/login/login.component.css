@@ -1,0 +1,28 @@
+.fa {
+    margin: 0.5rem;
+    color: #f186bc;
+}
+
+.social-footer {
+    margin-bottom: 0.1rem;
+}
+
+.email-div {
+    border-right: 1px solid #dedede;
+}
+
+.envelope {
+    margin: auto;
+}
+
+.linha {
+    margin-top: 2rem;
+}
+
+.social-div {
+    margin: 2% 0 1% 0;
+}
+
+.sou-doador {
+    padding-left: 2%;
+}
